@@ -1,4 +1,4 @@
-const API_URL = 'PASTE_WEB_APP_URL';
+const API_URL = 'https://script.google.com/macros/s/AKfycbzaWCujYMdpDumMuHATOLR7kuu6L_xPUN5mdZruuJZIWyZEZj8rm7bD-6KoOd9mlc7XUQ/exec';
 
 let currentUser = null;
 let table;
@@ -82,4 +82,85 @@ async function loginSystem(){
     }
 
     bootstrap.Modal.getInstance(
+      document.getElementById('loginModal')
+    ).hide();
+
+    loadAssignedPublikasi();
+
+  }
+
+}
+
+async function loadDashboard(){
+
+  const response =
+    await fetch(`${API_URL}?action=getPublikasi`);
+
+  const result = await response.json();
+
+  table.clear();
+
+  result.data.forEach(item=>{
+
+    table.row.add([
+
+      item.idPublikasi,
+      item.namaPublikasi,
+      item.statusPublikasi,
+      item.progress + '%'
+
+    ]);
+
+  });
+
+  table.draw();
+
+}
+
+async function loadCalendar(){
+
+  const response =
+    await fetch(`${API_URL}?action=getPublikasi`);
+
+  const result = await response.json();
+
+  const events = [];
+
+  result.data.forEach(item=>{
+
+    if(item.deadlineReview){
+
+      events.push({
+
+        title:'Deadline - ' + item.namaPublikasi,
+
+        start:convertDate(item.deadlineReview)
+
+      });
+
+    }
+
+  });
+
+  const calendarEl =
+    document.getElementById('calendar');
+
+  const calendar = new FullCalendar.Calendar(calendarEl,{
+
+    initialView:'dayGridMonth',
+
+    events:events
+
+  });
+
+  calendar.render();
+
+}
+
+function convertDate(dateStr){
+
+  const parts = dateStr.split('/');
+
+  return `${parts[2]}-${parts[1]}-${parts[0]}`;
+
 }
