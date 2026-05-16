@@ -7,9 +7,9 @@
 
 <title>KUEPUTU6171</title>
 
-<!-- =========================
+<!-- =====================================================
 CDN
-========================= -->
+===================================================== -->
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -22,11 +22,11 @@ href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css"/>
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css"
 rel="stylesheet">
 
-<style>
+<!-- =====================================================
+STYLE
+===================================================== -->
 
-/* =========================
-ROOT
-========================= */
+<style>
 
 :root{
   --primary:#2e7d32;
@@ -36,29 +36,34 @@ ROOT
   --warning:#ef6c00;
 }
 
-/* =========================
-BODY
-========================= */
-
 body{
-  background:var(--light);
+  background:
+  linear-gradient(
+    135deg,
+    #f4f6f9,
+    #eef3f8
+  );
+
   font-family:'Segoe UI',sans-serif;
+
   overflow-x:hidden;
 }
 
-/* =========================
-SPLASH SCREEN
-========================= */
+/* =====================================================
+SPLASH
+===================================================== */
 
 #splashScreen{
   position:fixed;
   inset:0;
   background:white;
   z-index:99999;
+
   display:flex;
   align-items:center;
   justify-content:center;
   flex-direction:column;
+
   transition:.8s;
 }
 
@@ -70,6 +75,25 @@ SPLASH SCREEN
 .splash-logo{
   width:110px;
   margin-bottom:20px;
+
+  animation:
+  floatLogo 2s ease-in-out infinite;
+}
+
+@keyframes floatLogo{
+
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-8px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+
 }
 
 .splash-title{
@@ -83,20 +107,37 @@ SPLASH SCREEN
   margin-top:8px;
 }
 
-/* =========================
+/* =====================================================
 SIDEBAR
-========================= */
+===================================================== */
 
 .sidebar{
+
   width:260px;
   min-height:100vh;
-  background:linear-gradient(180deg,#1b5e20,#43a047);
+
   position:fixed;
   left:0;
   top:0;
-  color:white;
+
   padding:20px;
+
+  background:
+  linear-gradient(
+    180deg,
+    #1b5e20,
+    #43a047
+  );
+
+  color:white;
+
   z-index:999;
+
+  backdrop-filter:blur(10px);
+
+  box-shadow:
+  8px 0 30px rgba(0,0,0,.08);
+
 }
 
 .sidebar h3{
@@ -105,25 +146,62 @@ SIDEBAR
 }
 
 .sidebar a{
+
   display:block;
+
   color:white;
   text-decoration:none;
+
   padding:12px 15px;
+
   border-radius:14px;
+
   margin-bottom:8px;
+
   transition:.3s;
+
   cursor:pointer;
+
+  position:relative;
+  overflow:hidden;
+
+}
+
+.sidebar a::before{
+
+  content:'';
+
+  position:absolute;
+  inset:0;
+
+  background:
+  linear-gradient(
+    90deg,
+    rgba(255,255,255,.15),
+    transparent
+  );
+
+  transform:translateX(-100%);
+  transition:.5s;
+
+}
+
+.sidebar a:hover::before{
+  transform:translateX(100%);
 }
 
 .sidebar a:hover,
 .sidebar a.active{
+
   background:rgba(255,255,255,.15);
+
   transform:translateX(4px);
+
 }
 
-/* =========================
+/* =====================================================
 MAIN
-========================= */
+===================================================== */
 
 .main{
   margin-left:260px;
@@ -139,95 +217,328 @@ MAIN
 }
 
 .topbar{
+
   background:white;
+
   padding:18px 24px;
-  border-radius:22px;
+
+  border-radius:24px;
+
   margin-bottom:25px;
-  box-shadow:0 4px 12px rgba(0,0,0,.05);
+
+  box-shadow:
+  0 4px 14px rgba(0,0,0,.05);
+
 }
 
 .content-card{
+
   border:none;
-  border-radius:22px;
+
+  border-radius:24px;
+
   background:white;
-  box-shadow:0 4px 14px rgba(0,0,0,.06);
+
+  box-shadow:
+  0 4px 18px rgba(0,0,0,.06);
+
+  transition:
+  transform .25s ease,
+  box-shadow .25s ease;
+
 }
 
+.content-card:hover{
+
+  transform:translateY(-3px);
+
+  box-shadow:
+  0 10px 25px rgba(0,0,0,.08);
+
+}
+
+/* =====================================================
+STAT CARD
+===================================================== */
+
 .stat-card{
+
   border:none;
-  border-radius:22px;
+  border-radius:24px;
+
   color:white;
+
   overflow:hidden;
+
+  position:relative;
+
+}
+
+.stat-card::after{
+
+  content:'';
+
+  position:absolute;
+
+  width:120px;
+  height:120px;
+
+  border-radius:50%;
+
+  top:-30px;
+  right:-30px;
+
+  background:
+  rgba(255,255,255,.15);
+
 }
 
 .card-blue{
-  background:linear-gradient(135deg,#1976d2,#42a5f5);
+  background:
+  linear-gradient(
+    135deg,
+    #1976d2,
+    #42a5f5
+  );
 }
 
 .card-green{
-  background:linear-gradient(135deg,#2e7d32,#66bb6a);
+  background:
+  linear-gradient(
+    135deg,
+    #2e7d32,
+    #66bb6a
+  );
 }
 
 .card-orange{
-  background:linear-gradient(135deg,#ef6c00,#ffa726);
+  background:
+  linear-gradient(
+    135deg,
+    #ef6c00,
+    #ffa726
+  );
 }
 
 .card-red{
-  background:linear-gradient(135deg,#c62828,#ef5350);
+  background:
+  linear-gradient(
+    135deg,
+    #c62828,
+    #ef5350
+  );
 }
 
-/* =========================
-PRIVATE MENU
-========================= */
+/* =====================================================
+PUBLICATION CARD
+===================================================== */
 
-.private-menu{
-  display:none !important;
+.pub-card{
+
+  background:white;
+
+  border-radius:24px;
+
+  padding:22px;
+
+  margin-bottom:22px;
+
+  box-shadow:
+  0 8px 24px rgba(0,0,0,.06);
+
+  transition:.25s;
+
+  position:relative;
+
+  overflow:hidden;
+
 }
 
-.private-menu.show{
-  display:block !important;
+.pub-card:hover{
+
+  transform:translateY(-4px);
+
+  box-shadow:
+  0 14px 32px rgba(0,0,0,.08);
+
 }
 
-.hidden{
-  display:none !important;
+.pub-card::before{
+
+  content:'';
+
+  position:absolute;
+
+  top:0;
+  left:0;
+
+  width:6px;
+  height:100%;
+
+  background:#43a047;
+
 }
 
-/* =========================
+.pub-card.review::before{
+  background:#ef6c00;
+}
+
+.pub-card.rilis::before{
+  background:#2e7d32;
+}
+
+.pub-card.revisi::before{
+  background:#d32f2f;
+}
+
+.pub-card.belum::before{
+  background:#90a4ae;
+}
+
+/* =====================================================
+DATE ITEM
+===================================================== */
+
+.date-item{
+
+  background:#f8fafc;
+
+  border-radius:16px;
+
+  padding:14px;
+
+  height:100%;
+
+}
+
+.date-label{
+
+  font-size:12px;
+  color:#78909c;
+
+  margin-bottom:6px;
+
+}
+
+.date-value{
+  font-weight:600;
+}
+
+/* =====================================================
+BADGE
+===================================================== */
+
+.badge-arc{
+  background:#1976d2;
+}
+
+.badge-nonarc{
+  background:#78909c;
+}
+
+/* =====================================================
+PROGRESS
+===================================================== */
+
+.progress{
+
+  height:12px;
+
+  border-radius:20px;
+
+  overflow:hidden;
+
+  background:#eceff1;
+
+}
+
+.progress-bar{
+
+  background:
+  linear-gradient(
+    90deg,
+    #43a047,
+    #81c784
+  );
+
+  animation:
+  shimmer 2s infinite;
+
+}
+
+@keyframes shimmer{
+
+  0%{
+    filter:brightness(1);
+  }
+
+  50%{
+    filter:brightness(1.15);
+  }
+
+  100%{
+    filter:brightness(1);
+  }
+
+}
+
+/* =====================================================
 UPLOAD CARD
-========================= */
+===================================================== */
 
 .upload-card{
-  border:1px solid #eceff1;
-  border-radius:20px;
-  padding:20px;
+
   background:white;
+
+  border-radius:24px;
+
+  padding:22px;
+
   margin-bottom:20px;
+
+  box-shadow:
+  0 4px 18px rgba(0,0,0,.06);
+
 }
 
-/* =========================
+/* =====================================================
 REVIEW
-========================= */
+===================================================== */
 
 .review-question{
-  border:1px solid #eceff1;
-  border-radius:16px;
-  padding:16px;
-  margin-bottom:15px;
+
   background:#fafafa;
+
+  border-radius:18px;
+
+  padding:18px;
+
+  margin-bottom:16px;
+
+  border:1px solid #eceff1;
+
 }
 
 .review-option{
+
   display:flex;
   gap:10px;
   flex-wrap:wrap;
+
 }
 
 .review-btn{
+
   border:none;
+
   border-radius:30px;
+
   padding:10px 16px;
+
   background:#eceff1;
-  transition:.2s;
+
+  transition:.25s;
+
 }
 
 .review-btn.active-success{
@@ -245,17 +556,43 @@ REVIEW
   color:white;
 }
 
-/* =========================
+/* =====================================================
+MENU
+===================================================== */
+
+.private-menu{
+  display:none !important;
+}
+
+.private-menu.show{
+  display:block !important;
+}
+
+.hidden{
+  display:none !important;
+}
+
+/* =====================================================
 FOOTER
-========================= */
+===================================================== */
 
 footer{
+
   margin-top:30px;
+
   background:white;
-  border-radius:20px;
+
+  border-radius:22px;
+
   padding:20px;
+
   text-align:center;
+
   color:#666;
+
+  box-shadow:
+  0 4px 12px rgba(0,0,0,.05);
+
 }
 
 </style>
@@ -263,29 +600,29 @@ footer{
 </head>
 <body>
 
-<!-- =========================
-SPLASH SCREEN
-========================= -->
+<!-- =====================================================
+SPLASH
+===================================================== -->
 
 <div id="splashScreen">
 
-  <img
-  src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Lambang_Badan_Pusat_Statistik_%28BPS%29_Indonesia.svg/960px-Lambang_Badan_Pusat_Statistik_%28BPS%29_Indonesia.svg.png"
-  class="splash-logo">
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Lambang_Badan_Pusat_Statistik_%28BPS%29_Indonesia.svg/960px-Lambang_Badan_Pusat_Statistik_%28BPS%29_Indonesia.svg.png"
+class="splash-logo">
 
-  <div class="splash-title">
-    KUEPUTU6171
-  </div>
+<div class="splash-title">
+KUEPUTU6171
+</div>
 
-  <div class="splash-subtitle">
-    Sistem Monitoring Publikasi Statistik
-  </div>
+<div class="splash-subtitle">
+Sistem Monitoring Publikasi Statistik
+</div>
 
 </div>
 
-<!-- =========================
+<!-- =====================================================
 LOGIN MODAL
-========================= -->
+===================================================== -->
 
 <div class="modal fade" id="loginModal">
 
@@ -341,9 +678,9 @@ Login
 </div>
 </div>
 
-<!-- =========================
+<!-- =====================================================
 SIDEBAR
-========================= -->
+===================================================== -->
 
 <div class="sidebar">
 
@@ -398,15 +735,13 @@ Logout
 
 </div>
 
-<!-- =========================
+<!-- =====================================================
 MAIN
-========================= -->
+===================================================== -->
 
 <div class="main">
 
-<!-- =========================
-DASHBOARD
-========================= -->
+<!-- DASHBOARD -->
 
 <div class="page active" id="dashboardPage">
 
@@ -422,49 +757,35 @@ BPS Kota Pontianak
 
 </div>
 
+<!-- STAT -->
+
 <div class="row g-4 mb-4">
 
 <div class="col-md-3">
-
 <div class="card stat-card card-blue p-4">
-
 <h6>Total Publikasi</h6>
-
 <h2 id="statTotal">0</h2>
-
 </div>
 </div>
 
 <div class="col-md-3">
-
 <div class="card stat-card card-green p-4">
-
 <h6>Sudah Rilis</h6>
-
 <h2 id="statRilis">0</h2>
-
 </div>
 </div>
 
 <div class="col-md-3">
-
 <div class="card stat-card card-orange p-4">
-
 <h6>Dalam Review</h6>
-
 <h2 id="statReview">0</h2>
-
 </div>
 </div>
 
 <div class="col-md-3">
-
 <div class="card stat-card card-red p-4">
-
 <h6>Revisi</h6>
-
 <h2 id="statRevisi">0</h2>
-
 </div>
 </div>
 
@@ -482,33 +803,15 @@ Kalender Publikasi
 
 </div>
 
-<!-- TABLE -->
+<!-- PUBLICATION CARD -->
 
-<div class="card content-card p-4">
-
-<table id="tabelPublikasi"
-class="table table-hover align-middle">
-
-<thead>
-<tr>
-<th>ID</th>
-<th>Publikasi</th>
-<th>Status</th>
-<th>Progress</th>
-</tr>
-</thead>
-
-<tbody></tbody>
-
-</table>
+<div id="publikasiCards"></div>
 
 </div>
 
-</div>
-
-<!-- =========================
+<!-- =====================================================
 UPLOAD PAGE
-========================= -->
+===================================================== -->
 
 <div class="page" id="uploadPage">
 
@@ -524,9 +827,9 @@ Upload Draft Publikasi
 
 </div>
 
-<!-- =========================
+<!-- =====================================================
 REVIEW PAGE
-========================= -->
+===================================================== -->
 
 <div class="page" id="reviewPage">
 
@@ -542,9 +845,9 @@ Review Publikasi
 
 </div>
 
-<!-- =========================
-ARSIP PAGE
-========================= -->
+<!-- =====================================================
+ARSIP
+===================================================== -->
 
 <div class="page" id="arsipPage">
 
@@ -561,11 +864,13 @@ Arsip Publikasi
 <table class="table table-hover">
 
 <thead>
+
 <tr>
 <th>ID</th>
 <th>Publikasi</th>
 <th>Status</th>
 </tr>
+
 </thead>
 
 <tbody id="arsipBody"></tbody>
@@ -576,9 +881,9 @@ Arsip Publikasi
 
 </div>
 
-<!-- =========================
-STATISTIK PAGE
-========================= -->
+<!-- =====================================================
+STATISTIK
+===================================================== -->
 
 <div class="page" id="statistikPage">
 
@@ -632,15 +937,11 @@ Publikasi per Tim
 
 </div>
 
-<!-- =========================
+<!-- =====================================================
 JS CDN
-========================= -->
+===================================================== -->
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
-
-<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -648,21 +949,20 @@ JS CDN
 
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
 
-<script>
+<!-- =====================================================
+SCRIPT
+===================================================== -->
 
-/* =========================
-CONFIG
-========================= */
+<script>
 
 const API_URL =
 'https://script.google.com/macros/s/AKfycbzaWCujYMdpDumMuHATOLR7kuu6L_xPUN5mdZruuJZIWyZEZj8rm7bD-6KoOd9mlc7XUQ/exec';
 
 let currentUser = null;
-let table;
 
-/* =========================
+/* =====================================================
 SPLASH
-========================= */
+===================================================== */
 
 window.addEventListener('load',()=>{
 
@@ -675,13 +975,11 @@ window.addEventListener('load',()=>{
 
 });
 
-/* =========================
+/* =====================================================
 INIT
-========================= */
+===================================================== */
 
 $(document).ready(function(){
-
-  table = $('#tabelPublikasi').DataTable();
 
   loadDashboard();
 
@@ -689,15 +987,17 @@ $(document).ready(function(){
 
 });
 
-/* =========================
+/* =====================================================
 SHOW PAGE
-========================= */
+===================================================== */
 
 function showPage(pageId,el){
 
   document.querySelectorAll('.page')
     .forEach(page=>{
+
       page.classList.remove('active');
+
     });
 
   document.getElementById(pageId)
@@ -705,16 +1005,18 @@ function showPage(pageId,el){
 
   document.querySelectorAll('.menu')
     .forEach(menu=>{
+
       menu.classList.remove('active');
+
     });
 
   el.classList.add('active');
 
 }
 
-/* =========================
+/* =====================================================
 LOGIN MODAL
-========================= */
+===================================================== */
 
 function showLoginModal(){
 
@@ -727,9 +1029,9 @@ function showLoginModal(){
 
 }
 
-/* =========================
-LOGIN SYSTEM
-========================= */
+/* =====================================================
+LOGIN
+===================================================== */
 
 async function loginSystem(){
 
@@ -750,11 +1052,6 @@ async function loginSystem(){
   if(result.success){
 
     currentUser = result;
-
-    localStorage.setItem(
-      'kueputu_user',
-      JSON.stringify(result)
-    );
 
     if(result.role === 'admin'){
 
@@ -798,44 +1095,44 @@ async function loginSystem(){
 
   else{
 
-    alert('Login gagal');
+    alert(result.message);
 
   }
 
 }
 
-/* =========================
+/* =====================================================
 LOGOUT
-========================= */
+===================================================== */
 
 function logoutSystem(){
-
-  localStorage.clear();
 
   location.reload();
 
 }
 
-/* =========================
+/* =====================================================
 LOAD DASHBOARD
-========================= */
+===================================================== */
 
 async function loadDashboard(){
 
   const response =
-    await fetch(`${API_URL}?action=getPublikasi`);
+    await fetch(
+      `${API_URL}?action=getPublikasi`
+    );
 
   const result =
     await response.json();
 
   if(result.success){
 
-    table.clear();
-
     let total = 0;
     let rilis = 0;
     let review = 0;
     let revisi = 0;
+
+    let cardsHTML = '';
 
     document.getElementById('arsipBody')
       .innerHTML = '';
@@ -856,27 +1153,201 @@ async function loadDashboard(){
         revisi++;
       }
 
-      table.row.add([
+      let statusClass = 'belum';
 
-        item.idPublikasi,
-        item.namaPublikasi,
-        item.statusPublikasi,
-        item.progress + '%'
+      if(item.statusPublikasi === 'Dalam Review'){
+        statusClass = 'review';
+      }
 
-      ]);
+      if(item.statusPublikasi === 'Sudah Rilis'){
+        statusClass = 'rilis';
+      }
+
+      if(item.statusPublikasi === 'Revisi'){
+        statusClass = 'revisi';
+      }
+
+      let jenisBadge = 'badge-nonarc';
+
+      if(item.jenisPublikasi === 'ARC'){
+        jenisBadge = 'badge-arc';
+      }
+
+      cardsHTML += `
+
+      <div class="pub-card ${statusClass}">
+
+        <div class="d-flex
+        justify-content-between
+        align-items-start
+        mb-3">
+
+          <div>
+
+            <h5 class="fw-bold mb-1">
+
+              ${item.namaPublikasi}
+
+            </h5>
+
+            <small class="text-muted">
+
+              ${item.idPublikasi}
+
+            </small>
+
+          </div>
+
+          <div class="text-end">
+
+            <span class="badge ${jenisBadge}">
+
+              ${item.jenisPublikasi}
+
+            </span>
+
+            <br><br>
+
+            <span class="badge bg-light text-dark">
+
+              ${item.statusPublikasi}
+
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="row g-3 mb-3">
+
+          <div class="col-md-3">
+
+            <div class="date-item">
+
+              <div class="date-label">
+                🟦 Upload Review
+              </div>
+
+              <div class="date-value">
+
+                ${item.tanggalUploadReview || '-'}
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-md-3">
+
+            <div class="date-item">
+
+              <div class="date-label">
+                🟪 Upload Portal
+              </div>
+
+              <div class="date-value">
+
+                ${item.tanggalUploadPortal || '-'}
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-md-3">
+
+            <div class="date-item">
+
+              <div class="date-label">
+                🟧 Deadline Review
+              </div>
+
+              <div class="date-value">
+
+                ${item.deadlineReview || '-'}
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-md-3">
+
+            <div class="date-item">
+
+              <div class="date-label">
+                🟩 Tanggal Rilis
+              </div>
+
+              <div class="date-value">
+
+                ${item.tanggalRilis || '-'}
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="mb-2">
+
+          <small class="text-muted">
+
+            Progress Publikasi
+
+          </small>
+
+        </div>
+
+        <div class="progress">
+
+          <div class="progress-bar"
+
+          style="
+          width:${item.progress || 0}%;
+          ">
+
+          </div>
+
+        </div>
+
+        <div class="mt-2 text-end">
+
+          <small class="fw-semibold">
+
+            ${item.progress || 0}%
+
+          </small>
+
+        </div>
+
+      </div>
+
+      `;
 
       document.getElementById('arsipBody')
         .innerHTML += `
+
         <tr>
+
           <td>${item.idPublikasi}</td>
           <td>${item.namaPublikasi}</td>
           <td>${item.statusPublikasi}</td>
+
         </tr>
+
       `;
 
     });
 
-    table.draw();
+    document.getElementById(
+      'publikasiCards'
+    ).innerHTML = cardsHTML;
 
     document.getElementById('statTotal')
       .innerText = total;
@@ -890,13 +1361,135 @@ async function loadDashboard(){
     document.getElementById('statRevisi')
       .innerText = revisi;
 
+    generateRealtimeCharts(
+      result.data
+    );
+
   }
 
 }
 
-/* =========================
+/* =====================================================
+LOAD CALENDAR
+===================================================== */
+
+async function loadCalendar(){
+
+  const response =
+    await fetch(
+      `${API_URL}?action=getPublikasi`
+    );
+
+  const result =
+    await response.json();
+
+  const events = [];
+
+  result.data.forEach(item=>{
+
+    if(item.deadlineReview){
+
+      events.push({
+
+        title:
+          '🟧 Review - ' +
+          item.namaPublikasi,
+
+        start:
+          convertDate(
+            item.deadlineReview
+          ),
+
+        color:'#ef6c00'
+
+      });
+
+    }
+
+    if(item.tanggalRilis){
+
+      events.push({
+
+        title:
+          '🟩 Rilis - ' +
+          item.namaPublikasi,
+
+        start:
+          convertDate(
+            item.tanggalRilis
+          ),
+
+        color:'#2e7d32'
+
+      });
+
+    }
+
+    if(item.tanggalUploadPortal){
+
+      events.push({
+
+        title:
+          '🟪 Upload Portal - ' +
+          item.namaPublikasi,
+
+        start:
+          convertDate(
+            item.tanggalUploadPortal
+          ),
+
+        color:'#7b1fa2'
+
+      });
+
+    }
+
+  });
+
+  const calendar =
+    new FullCalendar.Calendar(
+
+      document.getElementById('calendar'),
+
+      {
+
+        initialView:'dayGridMonth',
+
+        locale:'id',
+
+        height:650,
+
+        dayMaxEvents:true,
+
+        events:events
+
+      }
+
+    );
+
+  calendar.render();
+
+}
+
+/* =====================================================
+CONVERT DATE
+===================================================== */
+
+function convertDate(dateStr){
+
+  if(!dateStr)
+    return null;
+
+  const parts =
+    dateStr.toString().split('/');
+
+  return `${parts[2]}-${parts[1]}-${parts[0]}`;
+
+}
+
+/* =====================================================
 LOAD ASSIGNMENT
-========================= */
+===================================================== */
 
 async function loadAssignedPublikasi(){
 
@@ -910,13 +1503,29 @@ async function loadAssignedPublikasi(){
   const result =
     await response.json();
 
+  const pertanyaanResponse =
+    await fetch(
+      `${API_URL}?action=getPertanyaanReview`
+    );
+
+  const pertanyaanResult =
+    await pertanyaanResponse.json();
+
+  const pertanyaan =
+    pertanyaanResult.data;
+
   /* =====================
   UPLOAD
   ===================== */
 
   if(
-    currentUser.role === 'admin' ||
+
+    currentUser.role === 'admin'
+
+    ||
+
     currentUser.role === 'operator'
+
   ){
 
     let html = '';
@@ -925,9 +1534,12 @@ async function loadAssignedPublikasi(){
 
       html += `
 
-      <div class="upload-card">
+      <div class="upload-card"
+      data-idpublikasi="${item.idPublikasi}">
 
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex
+        justify-content-between
+        align-items-center">
 
           <div>
 
@@ -949,64 +1561,41 @@ async function loadAssignedPublikasi(){
 
         <hr>
 
-        <div class="row g-3 mb-3">
-
-          <div class="col-md-4">
-
-            <small class="text-muted">
-              Upload Review
-            </small>
-
-            <div class="fw-semibold">
-              ${item.tanggalUploadReview || '-'}
-            </div>
-
-          </div>
-
-          <div class="col-md-4">
-
-            <small class="text-muted">
-              Upload Portal
-            </small>
-
-            <div class="fw-semibold">
-              ${item.tanggalUploadPortal || '-'}
-            </div>
-
-          </div>
-
-          <div class="col-md-4">
-
-            <small class="text-muted">
-              Tanggal Rilis
-            </small>
-
-            <div class="fw-semibold">
-              ${item.tanggalRilis || '-'}
-            </div>
-
-          </div>
-
-        </div>
-
         <div class="mb-3">
 
-          <span class="badge bg-warning text-dark">
-            ${item.statusPublikasi}
-          </span>
+          <a href="${item.linkDraft}"
+
+          target="_blank"
+
+          class="btn btn-outline-success
+          rounded-pill">
+
+            Lihat Draft Saat Ini
+
+          </a>
 
         </div>
 
-        <input type="file"
-        class="form-control mb-3">
+        <input type="text"
+
+        class="form-control mb-3
+        linkDraft"
+
+        placeholder="Paste link Google Drive draft publikasi...">
 
         <textarea
         class="form-control mb-3"
         rows="2"
         placeholder="Catatan revisi..."></textarea>
 
-        <button class="btn btn-success rounded-pill">
+        <button
+        class="btn btn-success
+        rounded-pill"
+
+        onclick="submitDraft(this)">
+
           Upload Draft Baru
+
         </button>
 
       </div>
@@ -1015,8 +1604,9 @@ async function loadAssignedPublikasi(){
 
     });
 
-    document.getElementById('uploadContainer')
-      .innerHTML = html;
+    document.getElementById(
+      'uploadContainer'
+    ).innerHTML = html;
 
   }
 
@@ -1025,82 +1615,194 @@ async function loadAssignedPublikasi(){
   ===================== */
 
   if(
-    currentUser.role === 'admin' ||
+
+    currentUser.role === 'admin'
+
+    ||
+
     currentUser.role === 'reviewer'
+
   ){
 
     let html = '';
 
-    result.data.forEach((item,index)=>{
+    result.data.forEach((pub,index)=>{
 
       html += `
 
       <div class="accordion mb-3">
 
-        <div class="accordion-item border-0 rounded-4 overflow-hidden">
+        <div class="accordion-item
+        border-0 rounded-4
+        overflow-hidden">
 
           <h2 class="accordion-header">
 
-            <button class="accordion-button collapsed fw-semibold"
-            data-bs-toggle="collapse"
-            data-bs-target="#review${index}">
+            <button
+            class="accordion-button
+            collapsed fw-semibold"
 
-              ${item.namaPublikasi}
+            data-bs-toggle="collapse"
+
+            data-bs-target="#pub${index}">
+
+              ${pub.namaPublikasi}
 
             </button>
 
           </h2>
 
-          <div id="review${index}"
+          <div id="pub${index}"
           class="accordion-collapse collapse">
 
             <div class="accordion-body">
 
-              <div class="review-question">
+              <div class="mb-4">
 
-                <h6 class="mb-4">
-                  RV001 - Logo BPS sudah benar
-                </h6>
+                <a href="${pub.linkDraft}"
 
-                <div class="review-option mb-3">
+                target="_blank"
 
-                  <button type="button"
-                  class="review-btn"
-                  onclick="chooseReview(this,'Sudah Benar')">
+                class="btn btn-outline-success
+                rounded-pill">
 
-                    Sudah Benar
+                  Lihat Draft Publikasi
 
-                  </button>
+                </a>
 
-                  <button type="button"
-                  class="review-btn"
-                  onclick="chooseReview(this,'Ada Kesalahan')">
+              </div>
 
-                    Ada Kesalahan
+      `;
 
-                  </button>
+      const kelompokMap = {};
 
-                  <button type="button"
-                  class="review-btn"
-                  onclick="chooseReview(this,'Irelevan')">
+      pertanyaan.forEach(p=>{
 
-                    Irelevan
+        if(!kelompokMap[p.kelompok]){
 
-                  </button>
+          kelompokMap[p.kelompok] = [];
 
-                </div>
+        }
 
-                <input type="hidden"
-                class="review-answer">
+        kelompokMap[p.kelompok].push(p);
 
-                <textarea
-                class="form-control mb-3"
-                rows="2"
-                placeholder="Catatan reviewer..."></textarea>
+      });
 
-                <button class="btn btn-success rounded-pill">
-                  Submit Review
-                </button>
+      let groupIndex = 0;
+
+      Object.keys(kelompokMap)
+        .forEach(group=>{
+
+        html += `
+
+        <div class="accordion mb-3">
+
+          <div class="accordion-item">
+
+            <h2 class="accordion-header">
+
+              <button
+              class="accordion-button
+              collapsed"
+
+              data-bs-toggle="collapse"
+
+              data-bs-target="#group${index}${groupIndex}">
+
+                ${group}
+
+              </button>
+
+            </h2>
+
+            <div id="group${index}${groupIndex}"
+
+            class="accordion-collapse collapse">
+
+              <div class="accordion-body">
+
+        `;
+
+        kelompokMap[group]
+          .forEach(q=>{
+
+          html += `
+
+          <div class="review-question"
+
+          data-idpertanyaan="${q.idPertanyaan}">
+
+            <h6 class="mb-3">
+
+              ${q.idPertanyaan}
+              -
+              ${q.pertanyaan}
+
+            </h6>
+
+            <div class="review-option mb-3">
+
+              <button
+              type="button"
+
+              class="review-btn"
+
+              onclick="chooseReview(this,'Sudah Benar')">
+
+                Sudah Benar
+
+              </button>
+
+              <button
+              type="button"
+
+              class="review-btn"
+
+              onclick="chooseReview(this,'Ada Kesalahan')">
+
+                Ada Kesalahan
+
+              </button>
+
+              <button
+              type="button"
+
+              class="review-btn"
+
+              onclick="chooseReview(this,'Irelevan')">
+
+                Irelevan
+
+              </button>
+
+            </div>
+
+            <input type="hidden"
+            class="review-answer">
+
+            <textarea
+            class="form-control mb-3"
+            rows="2"
+            placeholder="Catatan reviewer..."></textarea>
+
+            <a href="${q.linkContohBenar}"
+
+            target="_blank"
+
+            class="btn btn-outline-success
+            rounded-pill">
+
+              Contoh Benar
+
+            </a>
+
+          </div>
+
+          `;
+
+        });
+
+        html += `
 
               </div>
 
@@ -1110,22 +1812,52 @@ async function loadAssignedPublikasi(){
 
         </div>
 
+        `;
+
+        groupIndex++;
+
+      });
+
+      html += `
+
+            <div class="text-end mt-4">
+
+              <button
+              class="btn btn-success
+              rounded-pill px-4"
+
+              onclick="submitReview(this,
+              '${pub.idPublikasi}')">
+
+                Submit Review
+
+              </button>
+
+            </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
 
       `;
 
     });
 
-    document.getElementById('reviewContainer')
-      .innerHTML = html;
+    document.getElementById(
+      'reviewContainer'
+    ).innerHTML = html;
 
   }
 
 }
 
-/* =========================
+/* =====================================================
 REVIEW BUTTON
-========================= */
+===================================================== */
 
 function chooseReview(btn,value){
 
@@ -1167,121 +1899,272 @@ function chooseReview(btn,value){
 
 }
 
-/* =========================
-CALENDAR
-========================= */
+/* =====================================================
+UPLOAD DRAFT
+===================================================== */
 
-async function loadCalendar(){
+async function submitDraft(btn){
+
+  const card =
+    btn.closest('.upload-card');
+
+  const idPublikasi =
+    card.dataset.idpublikasi;
+
+  const linkDraft =
+    card.querySelector('.linkDraft').value;
+
+  const catatan =
+    card.querySelector('textarea').value;
+
+  if(!linkDraft){
+
+    alert('Link draft wajib diisi');
+
+    return;
+
+  }
+
+  const body = {
+
+    action:'uploadDraft',
+
+    idPublikasi:idPublikasi,
+
+    versi:'v1',
+
+    linkDraft:linkDraft,
+
+    uploadOleh:currentUser.username,
+
+    catatan:catatan
+
+  };
 
   const response =
-    await fetch(`${API_URL}?action=getPublikasi`);
+    await fetch(API_URL,{
+
+      method:'POST',
+
+      body:JSON.stringify(body)
+
+    });
 
   const result =
     await response.json();
 
-  const events = [];
+  alert(result.message);
 
-  result.data.forEach(item=>{
+}
 
-    if(item.deadlineReview){
+/* =====================================================
+SUBMIT REVIEW
+===================================================== */
 
-      events.push({
+async function submitReview(
+  btn,
+  idPublikasi
+){
 
-        title:
-          'Deadline - ' + item.namaPublikasi,
+  const accordion =
+    btn.closest('.accordion-body');
 
-        start:
-          convertDate(item.deadlineReview)
+  const reviewCards =
+    accordion.querySelectorAll(
+      '.review-question'
+    );
 
-      });
+  let reviews = [];
+
+  let adaKosong = false;
+
+  reviewCards.forEach(item=>{
+
+    const idPertanyaan =
+      item.dataset.idpertanyaan;
+
+    const jawaban =
+      item.querySelector(
+        '.review-answer'
+      ).value;
+
+    const catatan =
+      item.querySelector(
+        'textarea'
+      ).value;
+
+    if(!jawaban){
+
+      adaKosong = true;
 
     }
 
+    reviews.push({
+
+      idPertanyaan:idPertanyaan,
+
+      jawaban:jawaban,
+
+      catatan:catatan
+
+    });
+
   });
 
-  const calendar =
-    new FullCalendar.Calendar(
+  if(adaKosong){
 
-      document.getElementById('calendar'),
+    alert(
+      'Semua pertanyaan wajib dijawab'
+    );
 
-      {
+    return;
 
-        initialView:'dayGridMonth',
+  }
 
-        events:events
+  const body = {
+
+    action:'saveReview',
+
+    idPublikasi:idPublikasi,
+
+    reviewer:currentUser.username,
+
+    reviews:reviews
+
+  };
+
+  const response =
+    await fetch(API_URL,{
+
+      method:'POST',
+
+      body:JSON.stringify(body)
+
+    });
+
+  const result =
+    await response.json();
+
+  alert(result.message);
+
+}
+
+/* =====================================================
+REALTIME CHART
+===================================================== */
+
+function generateRealtimeCharts(data){
+
+  let statusCount = {
+
+    'Sudah Rilis':0,
+    'Dalam Review':0,
+    'Revisi':0,
+    'Belum Upload':0
+
+  };
+
+  let timCount = {};
+
+  data.forEach(item=>{
+
+    const status =
+      item.statusPublikasi ||
+      'Belum Upload';
+
+    if(statusCount[status] !== undefined){
+
+      statusCount[status]++;
+
+    }
+
+    const tim =
+      item.timPenyusun ||
+      'Lainnya';
+
+    if(!timCount[tim]){
+
+      timCount[tim] = 0;
+
+    }
+
+    timCount[tim]++;
+
+  });
+
+  if(window.chartStatusObj){
+
+    window.chartStatusObj.destroy();
+
+  }
+
+  if(window.chartTimObj){
+
+    window.chartTimObj.destroy();
+
+  }
+
+  window.chartStatusObj =
+  new Chart(
+
+    document.getElementById(
+      'chartStatus'
+    ),
+
+    {
+
+      type:'doughnut',
+
+      data:{
+
+        labels:
+        Object.keys(statusCount),
+
+        datasets:[{
+
+          data:
+          Object.values(statusCount)
+
+        }]
 
       }
 
-    );
+    }
 
-  calendar.render();
+  );
+
+  window.chartTimObj =
+  new Chart(
+
+    document.getElementById(
+      'chartTim'
+    ),
+
+    {
+
+      type:'bar',
+
+      data:{
+
+        labels:
+        Object.keys(timCount),
+
+        datasets:[{
+
+          label:'Publikasi',
+
+          data:
+          Object.values(timCount)
+
+        }]
+
+      }
+
+    }
+
+  );
 
 }
-
-/* =========================
-DATE FORMAT
-========================= */
-
-function convertDate(dateStr){
-
-  const parts =
-    dateStr.split('/');
-
-  return `${parts[2]}-${parts[1]}-${parts[0]}`;
-
-}
-
-/* =========================
-CHART
-========================= */
-
-new Chart(document.getElementById('chartStatus'),{
-
-  type:'doughnut',
-
-  data:{
-
-    labels:[
-      'Sudah Rilis',
-      'Dalam Review',
-      'Revisi'
-    ],
-
-    datasets:[{
-
-      data:[12,7,3]
-
-    }]
-
-  }
-
-});
-
-new Chart(document.getElementById('chartTim'),{
-
-  type:'bar',
-
-  data:{
-
-    labels:[
-      'IPDS',
-      'Sosial',
-      'Produksi',
-      'NWAS',
-      'Distribusi'
-    ],
-
-    datasets:[{
-
-      label:'Publikasi',
-
-      data:[5,7,4,3,6]
-
-    }]
-
-  }
-
-});
 
 </script>
 
