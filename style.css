@@ -1,0 +1,76 @@
+body{
+  background:#f4f6f9;
+  font-family:'Segoe UI',sans-serif;
+}
+
+.sidebar{
+  width:260px;
+  min-height:100vh;
+  background:linear-gradient(180deg,#1b5e20,#43a047);
+  color:white;
+  position:fixed;
+  left:0;
+  top:0;
+  padding:20px;
+}
+
+.main{
+  margin-left:260px;
+  padding:25px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.content-card{
+  border:none;
+  border-radius:22px;
+  background:white;
+  box-shadow:0 4px 14px rgba(0,0,0,.06);
+}
+
+.topbar{
+  background:white;
+  padding:18px 24px;
+  border-radius:22px;
+  margin-bottom:25px;
+}
+
+.stat-card{
+  border:none;
+  border-radius:22px;
+  color:white;
+}
+
+.card-blue{
+  background:linear-gradient(135deg,#1976d2,#42a5f5);
+}
+
+.card-green{
+  background:linear-gradient(135deg,#2e7d32,#66bb6a);
+}
+
+.card-orange{
+  background:linear-gradient(135deg,#ef6c00,#ffa726);
+}
+
+.card-red{
+  background:linear-gradient(135deg,#c62828,#ef5350);
+}
+
+.private-menu{
+  display:none;
+}
+
+.private-menu.show{
+  display:block;
+}
+
+.hidden{
+  display:none;
+}
