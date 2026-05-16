@@ -78,4 +78,189 @@
                 onclick="loginSystem()">
 
           Login
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+  <h3>
+    🍃 KUEPUTU6171
+  </h3>
+
+  <a class="menu active"
+     onclick="showPage('dashboardPage', this)">
+    <i class="bi bi-speedometer2"></i>
+    Dashboard
+  </a>
+
+  <a id="menuUpload"
+     class="menu private-menu"
+     onclick="showPage('uploadPage', this)">
+    <i class="bi bi-upload"></i>
+    Upload Draft
+  </a>
+
+  <a id="menuReview"
+     class="menu private-menu"
+     onclick="showPage('reviewPage', this)">
+    <i class="bi bi-search"></i>
+    Review Publikasi
+  </a>
+
+  <a class="menu"
+     onclick="showPage('arsipPage', this)">
+    <i class="bi bi-folder2-open"></i>
+    Arsip Publikasi
+  </a>
+
+  <a class="menu"
+     onclick="showPage('statistikPage', this)">
+    <i class="bi bi-bar-chart"></i>
+    Statistik Monitoring
+  </a>
+
+  <a id="loginMenu"
+     onclick="showLoginModal()">
+    <i class="bi bi-box-arrow-in-right"></i>
+    Login
+  </a>
+
+  <a id="logoutMenu"
+     class="hidden"
+     onclick="logoutSystem()">
+    <i class="bi bi-box-arrow-right"></i>
+    Logout
+  </a>
+
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- DASHBOARD -->
+  <div class="page active" id="dashboardPage">
+
+    <div class="topbar">
+
+      <h4 class="fw-bold mb-1">
+        Dashboard Monitoring Publikasi
+      </h4>
+
+      <small class="text-muted">
+        BPS Kota Pontianak
+      </small>
+
+    </div>
+
+    <div class="row g-4 mb-4">
+
+      <div class="col-md-3">
+        <div class="card stat-card card-blue p-4">
+          <h6>Total Publikasi</h6>
+          <h2 id="statTotal">0</h2>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card stat-card card-green p-4">
+          <h6>Sudah Rilis</h6>
+          <h2 id="statRilis">0</h2>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card stat-card card-orange p-4">
+          <h6>Dalam Review</h6>
+          <h2 id="statReview">0</h2>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card stat-card card-red p-4">
+          <h6>Revisi</h6>
+          <h2 id="statRevisi">0</h2>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card content-card p-4 mb-4">
+
+      <h5 class="fw-bold mb-4">
+        Kalender Publikasi
+      </h5>
+
+      <div id="calendar"></div>
+
+    </div>
+
+    <div class="card content-card p-4">
+
+      <table id="tabelPublikasi"
+             class="table table-hover align-middle">
+
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Publikasi</th>
+            <th>Status</th>
+            <th>Progress</th>
+          </tr>
+        </thead>
+
+        <tbody></tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+  <!-- UPLOAD PAGE -->
+  <div class="page" id="uploadPage">
+
+    <div class="topbar">
+      <h4 class="fw-bold mb-1">
+        Upload Draft Publikasi
+      </h4>
+    </div>
+
+    <div id="uploadContainer"></div>
+
+  </div>
+
+  <!-- REVIEW PAGE -->
+  <div class="page" id="reviewPage">
+
+    <div class="topbar">
+      <h4 class="fw-bold mb-1">
+        Review Publikasi
+      </h4>
+    </div>
+
+    <div id="reviewContainer"></div>
+
+  </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+
+<script src="script.js"></script>
+
+</body>
 </html>
