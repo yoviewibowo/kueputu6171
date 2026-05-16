@@ -7,23 +7,271 @@
 
 <title>KUEPUTU6171</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css"/>
-<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
+<!-- =========================
+CDN
+========================= -->
 
-<link rel="stylesheet" href="style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<link rel="stylesheet"
+href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css"/>
+
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css"
+rel="stylesheet">
+
+<style>
+
+/* =========================
+ROOT
+========================= */
+
+:root{
+  --primary:#2e7d32;
+  --secondary:#43a047;
+  --light:#f4f6f9;
+  --danger:#d32f2f;
+  --warning:#ef6c00;
+}
+
+/* =========================
+BODY
+========================= */
+
+body{
+  background:var(--light);
+  font-family:'Segoe UI',sans-serif;
+  overflow-x:hidden;
+}
+
+/* =========================
+SPLASH SCREEN
+========================= */
+
+#splashScreen{
+  position:fixed;
+  inset:0;
+  background:white;
+  z-index:99999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  transition:.8s;
+}
+
+#splashScreen.hide{
+  opacity:0;
+  pointer-events:none;
+}
+
+.splash-logo{
+  width:110px;
+  margin-bottom:20px;
+}
+
+.splash-title{
+  font-size:32px;
+  font-weight:700;
+  color:#2e7d32;
+}
+
+.splash-subtitle{
+  color:#666;
+  margin-top:8px;
+}
+
+/* =========================
+SIDEBAR
+========================= */
+
+.sidebar{
+  width:260px;
+  min-height:100vh;
+  background:linear-gradient(180deg,#1b5e20,#43a047);
+  position:fixed;
+  left:0;
+  top:0;
+  color:white;
+  padding:20px;
+  z-index:999;
+}
+
+.sidebar h3{
+  font-weight:700;
+  margin-bottom:35px;
+}
+
+.sidebar a{
+  display:block;
+  color:white;
+  text-decoration:none;
+  padding:12px 15px;
+  border-radius:14px;
+  margin-bottom:8px;
+  transition:.3s;
+  cursor:pointer;
+}
+
+.sidebar a:hover,
+.sidebar a.active{
+  background:rgba(255,255,255,.15);
+  transform:translateX(4px);
+}
+
+/* =========================
+MAIN
+========================= */
+
+.main{
+  margin-left:260px;
+  padding:25px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.topbar{
+  background:white;
+  padding:18px 24px;
+  border-radius:22px;
+  margin-bottom:25px;
+  box-shadow:0 4px 12px rgba(0,0,0,.05);
+}
+
+.content-card{
+  border:none;
+  border-radius:22px;
+  background:white;
+  box-shadow:0 4px 14px rgba(0,0,0,.06);
+}
+
+.stat-card{
+  border:none;
+  border-radius:22px;
+  color:white;
+  overflow:hidden;
+}
+
+.card-blue{
+  background:linear-gradient(135deg,#1976d2,#42a5f5);
+}
+
+.card-green{
+  background:linear-gradient(135deg,#2e7d32,#66bb6a);
+}
+
+.card-orange{
+  background:linear-gradient(135deg,#ef6c00,#ffa726);
+}
+
+.card-red{
+  background:linear-gradient(135deg,#c62828,#ef5350);
+}
+
+/* =========================
+PRIVATE MENU
+========================= */
+
+.private-menu{
+  display:none !important;
+}
+
+.private-menu.show{
+  display:block !important;
+}
+
+.hidden{
+  display:none !important;
+}
+
+/* =========================
+UPLOAD CARD
+========================= */
+
+.upload-card{
+  border:1px solid #eceff1;
+  border-radius:20px;
+  padding:20px;
+  background:white;
+  margin-bottom:20px;
+}
+
+/* =========================
+REVIEW
+========================= */
+
+.review-question{
+  border:1px solid #eceff1;
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:15px;
+  background:#fafafa;
+}
+
+.review-option{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.review-btn{
+  border:none;
+  border-radius:30px;
+  padding:10px 16px;
+  background:#eceff1;
+  transition:.2s;
+}
+
+.review-btn.active-success{
+  background:#2e7d32;
+  color:white;
+}
+
+.review-btn.active-danger{
+  background:#d32f2f;
+  color:white;
+}
+
+.review-btn.active-secondary{
+  background:#546e7a;
+  color:white;
+}
+
+/* =========================
+FOOTER
+========================= */
+
+footer{
+  margin-top:30px;
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  text-align:center;
+  color:#666;
+}
+
+</style>
 
 </head>
 <body>
 
-<!-- SPLASH -->
+<!-- =========================
+SPLASH SCREEN
+========================= -->
+
 <div id="splashScreen">
 
   <img
-    src="assets/logo-bps.png"
-    class="splash-logo"
-  >
+  src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Lambang_Badan_Pusat_Statistik_%28BPS%29_Indonesia.svg/960px-Lambang_Badan_Pusat_Statistik_%28BPS%29_Indonesia.svg.png"
+  class="splash-logo">
 
   <div class="splash-title">
     KUEPUTU6171
@@ -35,232 +283,1007 @@
 
 </div>
 
-<!-- LOGIN MODAL -->
+<!-- =========================
+LOGIN MODAL
+========================= -->
+
 <div class="modal fade" id="loginModal">
 
-  <div class="modal-dialog modal-dialog-centered">
+<div class="modal-dialog modal-dialog-centered">
 
-    <div class="modal-content border-0 rounded-4">
+<div class="modal-content border-0 rounded-4">
 
-      <div class="modal-body p-4">
+<div class="modal-body p-4">
 
-        <div class="text-center mb-4">
+<div class="text-center mb-4">
 
-          <h3>🍃 KUEPUTU6171</h3>
+<h3>🍃 KUEPUTU6171</h3>
 
-          <p class="text-muted mb-0">
-            Login Sistem Publikasi
-          </p>
+<p class="text-muted mb-0">
+Login Sistem Publikasi
+</p>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">
+Username BPS
+</label>
+
+<input type="text"
+class="form-control"
+id="loginUsername">
+
+</div>
+
+<div class="mb-4">
+
+<label class="form-label">
+Password
+</label>
+
+<input type="password"
+class="form-control"
+id="loginPassword">
+
+</div>
+
+<button class="btn btn-success rounded-pill w-100"
+onclick="loginSystem()">
+
+Login
+
+</button>
+
+</div>
+</div>
+</div>
+</div>
+
+<!-- =========================
+SIDEBAR
+========================= -->
+
+<div class="sidebar">
+
+<h3>
+🍃 KUEPUTU6171
+</h3>
+
+<a class="menu active"
+onclick="showPage('dashboardPage',this)">
+<i class="bi bi-speedometer2"></i>
+Dashboard
+</a>
+
+<a id="menuUpload"
+class="menu private-menu"
+onclick="showPage('uploadPage',this)">
+<i class="bi bi-upload"></i>
+Upload Draft
+</a>
+
+<a id="menuReview"
+class="menu private-menu"
+onclick="showPage('reviewPage',this)">
+<i class="bi bi-search"></i>
+Review Publikasi
+</a>
+
+<a class="menu"
+onclick="showPage('arsipPage',this)">
+<i class="bi bi-folder2-open"></i>
+Arsip Publikasi
+</a>
+
+<a class="menu"
+onclick="showPage('statistikPage',this)">
+<i class="bi bi-bar-chart"></i>
+Statistik Monitoring
+</a>
+
+<a id="loginMenu"
+onclick="showLoginModal()">
+<i class="bi bi-box-arrow-in-right"></i>
+Login
+</a>
+
+<a id="logoutMenu"
+class="hidden"
+onclick="logoutSystem()">
+<i class="bi bi-box-arrow-right"></i>
+Logout
+</a>
+
+</div>
+
+<!-- =========================
+MAIN
+========================= -->
+
+<div class="main">
+
+<!-- =========================
+DASHBOARD
+========================= -->
+
+<div class="page active" id="dashboardPage">
+
+<div class="topbar">
+
+<h4 class="fw-bold mb-1">
+Dashboard Monitoring Publikasi
+</h4>
+
+<small class="text-muted">
+BPS Kota Pontianak
+</small>
+
+</div>
+
+<div class="row g-4 mb-4">
+
+<div class="col-md-3">
+
+<div class="card stat-card card-blue p-4">
+
+<h6>Total Publikasi</h6>
+
+<h2 id="statTotal">0</h2>
+
+</div>
+</div>
+
+<div class="col-md-3">
+
+<div class="card stat-card card-green p-4">
+
+<h6>Sudah Rilis</h6>
+
+<h2 id="statRilis">0</h2>
+
+</div>
+</div>
+
+<div class="col-md-3">
+
+<div class="card stat-card card-orange p-4">
+
+<h6>Dalam Review</h6>
+
+<h2 id="statReview">0</h2>
+
+</div>
+</div>
+
+<div class="col-md-3">
+
+<div class="card stat-card card-red p-4">
+
+<h6>Revisi</h6>
+
+<h2 id="statRevisi">0</h2>
+
+</div>
+</div>
+
+</div>
+
+<!-- CALENDAR -->
+
+<div class="card content-card p-4 mb-4">
+
+<h5 class="fw-bold mb-4">
+Kalender Publikasi
+</h5>
+
+<div id="calendar"></div>
+
+</div>
+
+<!-- TABLE -->
+
+<div class="card content-card p-4">
+
+<table id="tabelPublikasi"
+class="table table-hover align-middle">
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Publikasi</th>
+<th>Status</th>
+<th>Progress</th>
+</tr>
+</thead>
+
+<tbody></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- =========================
+UPLOAD PAGE
+========================= -->
+
+<div class="page" id="uploadPage">
+
+<div class="topbar">
+
+<h4 class="fw-bold mb-1">
+Upload Draft Publikasi
+</h4>
+
+</div>
+
+<div id="uploadContainer"></div>
+
+</div>
+
+<!-- =========================
+REVIEW PAGE
+========================= -->
+
+<div class="page" id="reviewPage">
+
+<div class="topbar">
+
+<h4 class="fw-bold mb-1">
+Review Publikasi
+</h4>
+
+</div>
+
+<div id="reviewContainer"></div>
+
+</div>
+
+<!-- =========================
+ARSIP PAGE
+========================= -->
+
+<div class="page" id="arsipPage">
+
+<div class="topbar">
+
+<h4 class="fw-bold mb-1">
+Arsip Publikasi
+</h4>
+
+</div>
+
+<div class="card content-card p-4">
+
+<table class="table table-hover">
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Publikasi</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody id="arsipBody"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- =========================
+STATISTIK PAGE
+========================= -->
+
+<div class="page" id="statistikPage">
+
+<div class="topbar">
+
+<h4 class="fw-bold mb-1">
+Statistik Monitoring
+</h4>
+
+</div>
+
+<div class="row g-4">
+
+<div class="col-md-6">
+
+<div class="card content-card p-4">
+
+<h5 class="fw-bold mb-4">
+Status Publikasi
+</h5>
+
+<canvas id="chartStatus"></canvas>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="card content-card p-4">
+
+<h5 class="fw-bold mb-4">
+Publikasi per Tim
+</h5>
+
+<canvas id="chartTim"></canvas>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 KUEPUTU6171 · BPS Kota Pontianak
+
+</footer>
+
+</div>
+
+<!-- =========================
+JS CDN
+========================= -->
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+
+<script>
+
+/* =========================
+CONFIG
+========================= */
+
+const API_URL =
+'https://script.google.com/macros/s/AKfycbzaWCujYMdpDumMuHATOLR7kuu6L_xPUN5mdZruuJZIWyZEZj8rm7bD-6KoOd9mlc7XUQ/exec';
+
+let currentUser = null;
+let table;
+
+/* =========================
+SPLASH
+========================= */
+
+window.addEventListener('load',()=>{
+
+  setTimeout(()=>{
+
+    document.getElementById('splashScreen')
+      .classList.add('hide');
+
+  },1500);
+
+});
+
+/* =========================
+INIT
+========================= */
+
+$(document).ready(function(){
+
+  table = $('#tabelPublikasi').DataTable();
+
+  loadDashboard();
+
+  loadCalendar();
+
+});
+
+/* =========================
+SHOW PAGE
+========================= */
+
+function showPage(pageId,el){
+
+  document.querySelectorAll('.page')
+    .forEach(page=>{
+      page.classList.remove('active');
+    });
+
+  document.getElementById(pageId)
+    .classList.add('active');
+
+  document.querySelectorAll('.menu')
+    .forEach(menu=>{
+      menu.classList.remove('active');
+    });
+
+  el.classList.add('active');
+
+}
+
+/* =========================
+LOGIN MODAL
+========================= */
+
+function showLoginModal(){
+
+  const modal =
+    new bootstrap.Modal(
+      document.getElementById('loginModal')
+    );
+
+  modal.show();
+
+}
+
+/* =========================
+LOGIN SYSTEM
+========================= */
+
+async function loginSystem(){
+
+  const username =
+    document.getElementById('loginUsername').value;
+
+  const password =
+    document.getElementById('loginPassword').value;
+
+  const response =
+    await fetch(
+      `${API_URL}?action=login&username=${username}&password=${password}`
+    );
+
+  const result =
+    await response.json();
+
+  if(result.success){
+
+    currentUser = result;
+
+    localStorage.setItem(
+      'kueputu_user',
+      JSON.stringify(result)
+    );
+
+    if(result.role === 'admin'){
+
+      document.getElementById('menuUpload')
+        .classList.add('show');
+
+      document.getElementById('menuReview')
+        .classList.add('show');
+
+    }
+
+    else if(result.role === 'operator'){
+
+      document.getElementById('menuUpload')
+        .classList.add('show');
+
+    }
+
+    else if(result.role === 'reviewer'){
+
+      document.getElementById('menuReview')
+        .classList.add('show');
+
+    }
+
+    document.getElementById('loginMenu')
+      .classList.add('hidden');
+
+    document.getElementById('logoutMenu')
+      .classList.remove('hidden');
+
+    bootstrap.Modal.getInstance(
+      document.getElementById('loginModal')
+    ).hide();
+
+    loadAssignedPublikasi();
+
+    alert('Login berhasil');
+
+  }
+
+  else{
+
+    alert('Login gagal');
+
+  }
+
+}
+
+/* =========================
+LOGOUT
+========================= */
+
+function logoutSystem(){
+
+  localStorage.clear();
+
+  location.reload();
+
+}
+
+/* =========================
+LOAD DASHBOARD
+========================= */
+
+async function loadDashboard(){
+
+  const response =
+    await fetch(`${API_URL}?action=getPublikasi`);
+
+  const result =
+    await response.json();
+
+  if(result.success){
+
+    table.clear();
+
+    let total = 0;
+    let rilis = 0;
+    let review = 0;
+    let revisi = 0;
+
+    document.getElementById('arsipBody')
+      .innerHTML = '';
+
+    result.data.forEach(item=>{
+
+      total++;
+
+      if(item.statusPublikasi === 'Sudah Rilis'){
+        rilis++;
+      }
+
+      if(item.statusPublikasi === 'Dalam Review'){
+        review++;
+      }
+
+      if(item.statusPublikasi === 'Revisi'){
+        revisi++;
+      }
+
+      table.row.add([
+
+        item.idPublikasi,
+        item.namaPublikasi,
+        item.statusPublikasi,
+        item.progress + '%'
+
+      ]);
+
+      document.getElementById('arsipBody')
+        .innerHTML += `
+        <tr>
+          <td>${item.idPublikasi}</td>
+          <td>${item.namaPublikasi}</td>
+          <td>${item.statusPublikasi}</td>
+        </tr>
+      `;
+
+    });
+
+    table.draw();
+
+    document.getElementById('statTotal')
+      .innerText = total;
+
+    document.getElementById('statRilis')
+      .innerText = rilis;
+
+    document.getElementById('statReview')
+      .innerText = review;
+
+    document.getElementById('statRevisi')
+      .innerText = revisi;
+
+  }
+
+}
+
+/* =========================
+LOAD ASSIGNMENT
+========================= */
+
+async function loadAssignedPublikasi(){
+
+  if(!currentUser) return;
+
+  const response =
+    await fetch(
+      `${API_URL}?action=getAssignedPublikasi&username=${currentUser.username}`
+    );
+
+  const result =
+    await response.json();
+
+  /* =====================
+  UPLOAD
+  ===================== */
+
+  if(
+    currentUser.role === 'admin' ||
+    currentUser.role === 'operator'
+  ){
+
+    let html = '';
+
+    result.data.forEach(item=>{
+
+      html += `
+
+      <div class="upload-card">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+          <div>
+
+            <h5 class="fw-bold mb-1">
+              ${item.namaPublikasi}
+            </h5>
+
+            <small class="text-muted">
+              ${item.idPublikasi}
+            </small>
+
+          </div>
+
+          <span class="badge bg-success">
+            ${item.progress}%
+          </span>
+
+        </div>
+
+        <hr>
+
+        <div class="row g-3 mb-3">
+
+          <div class="col-md-4">
+
+            <small class="text-muted">
+              Upload Review
+            </small>
+
+            <div class="fw-semibold">
+              ${item.tanggalUploadReview || '-'}
+            </div>
+
+          </div>
+
+          <div class="col-md-4">
+
+            <small class="text-muted">
+              Upload Portal
+            </small>
+
+            <div class="fw-semibold">
+              ${item.tanggalUploadPortal || '-'}
+            </div>
+
+          </div>
+
+          <div class="col-md-4">
+
+            <small class="text-muted">
+              Tanggal Rilis
+            </small>
+
+            <div class="fw-semibold">
+              ${item.tanggalRilis || '-'}
+            </div>
+
+          </div>
 
         </div>
 
         <div class="mb-3">
 
-          <label class="form-label">
-            Username BPS
-          </label>
-
-          <input type="text" class="form-control" id="loginUsername">
+          <span class="badge bg-warning text-dark">
+            ${item.statusPublikasi}
+          </span>
 
         </div>
 
-        <div class="mb-4">
+        <input type="file"
+        class="form-control mb-3">
 
-          <label class="form-label">
-            Password
-          </label>
+        <textarea
+        class="form-control mb-3"
+        rows="2"
+        placeholder="Catatan revisi..."></textarea>
 
-          <input type="password" class="form-control" id="loginPassword">
-
-        </div>
-
-        <button class="btn btn-success rounded-pill w-100"
-                onclick="loginSystem()">
-
-          Login
-
+        <button class="btn btn-success rounded-pill">
+          Upload Draft Baru
         </button>
 
       </div>
 
-    </div>
+      `;
 
-  </div>
+    });
 
-</div>
+    document.getElementById('uploadContainer')
+      .innerHTML = html;
 
-<!-- SIDEBAR -->
-<div class="sidebar">
+  }
 
-  <h3>
-    🍃 KUEPUTU6171
-  </h3>
+  /* =====================
+  REVIEW
+  ===================== */
 
-  <a class="menu active"
-     onclick="showPage('dashboardPage', this)">
-    <i class="bi bi-speedometer2"></i>
-    Dashboard
-  </a>
+  if(
+    currentUser.role === 'admin' ||
+    currentUser.role === 'reviewer'
+  ){
 
-  <a id="menuUpload"
-     class="menu private-menu"
-     onclick="showPage('uploadPage', this)">
-    <i class="bi bi-upload"></i>
-    Upload Draft
-  </a>
+    let html = '';
 
-  <a id="menuReview"
-     class="menu private-menu"
-     onclick="showPage('reviewPage', this)">
-    <i class="bi bi-search"></i>
-    Review Publikasi
-  </a>
+    result.data.forEach((item,index)=>{
 
-  <a class="menu"
-     onclick="showPage('arsipPage', this)">
-    <i class="bi bi-folder2-open"></i>
-    Arsip Publikasi
-  </a>
+      html += `
 
-  <a class="menu"
-     onclick="showPage('statistikPage', this)">
-    <i class="bi bi-bar-chart"></i>
-    Statistik Monitoring
-  </a>
+      <div class="accordion mb-3">
 
-  <a id="loginMenu"
-     onclick="showLoginModal()">
-    <i class="bi bi-box-arrow-in-right"></i>
-    Login
-  </a>
+        <div class="accordion-item border-0 rounded-4 overflow-hidden">
 
-  <a id="logoutMenu"
-     class="hidden"
-     onclick="logoutSystem()">
-    <i class="bi bi-box-arrow-right"></i>
-    Logout
-  </a>
+          <h2 class="accordion-header">
 
-</div>
+            <button class="accordion-button collapsed fw-semibold"
+            data-bs-toggle="collapse"
+            data-bs-target="#review${index}">
 
-<!-- MAIN -->
-<div class="main">
+              ${item.namaPublikasi}
 
-  <!-- DASHBOARD -->
-  <div class="page active" id="dashboardPage">
+            </button>
 
-    <div class="topbar">
+          </h2>
 
-      <h4 class="fw-bold mb-1">
-        Dashboard Monitoring Publikasi
-      </h4>
+          <div id="review${index}"
+          class="accordion-collapse collapse">
 
-      <small class="text-muted">
-        BPS Kota Pontianak
-      </small>
+            <div class="accordion-body">
 
-    </div>
+              <div class="review-question">
 
-    <div class="row g-4 mb-4">
+                <h6 class="mb-4">
+                  RV001 - Logo BPS sudah benar
+                </h6>
 
-      <div class="col-md-3">
-        <div class="card stat-card card-blue p-4">
-          <h6>Total Publikasi</h6>
-          <h2 id="statTotal">0</h2>
+                <div class="review-option mb-3">
+
+                  <button type="button"
+                  class="review-btn"
+                  onclick="chooseReview(this,'Sudah Benar')">
+
+                    Sudah Benar
+
+                  </button>
+
+                  <button type="button"
+                  class="review-btn"
+                  onclick="chooseReview(this,'Ada Kesalahan')">
+
+                    Ada Kesalahan
+
+                  </button>
+
+                  <button type="button"
+                  class="review-btn"
+                  onclick="chooseReview(this,'Irelevan')">
+
+                    Irelevan
+
+                  </button>
+
+                </div>
+
+                <input type="hidden"
+                class="review-answer">
+
+                <textarea
+                class="form-control mb-3"
+                rows="2"
+                placeholder="Catatan reviewer..."></textarea>
+
+                <button class="btn btn-success rounded-pill">
+                  Submit Review
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
+
       </div>
 
-      <div class="col-md-3">
-        <div class="card stat-card card-green p-4">
-          <h6>Sudah Rilis</h6>
-          <h2 id="statRilis">0</h2>
-        </div>
-      </div>
+      `;
 
-      <div class="col-md-3">
-        <div class="card stat-card card-orange p-4">
-          <h6>Dalam Review</h6>
-          <h2 id="statReview">0</h2>
-        </div>
-      </div>
+    });
 
-      <div class="col-md-3">
-        <div class="card stat-card card-red p-4">
-          <h6>Revisi</h6>
-          <h2 id="statRevisi">0</h2>
-        </div>
-      </div>
+    document.getElementById('reviewContainer')
+      .innerHTML = html;
 
-    </div>
+  }
 
-    <div class="card content-card p-4 mb-4">
+}
 
-      <h5 class="fw-bold mb-4">
-        Kalender Publikasi
-      </h5>
+/* =========================
+REVIEW BUTTON
+========================= */
 
-      <div id="calendar"></div>
+function chooseReview(btn,value){
 
-    </div>
+  const parent =
+    btn.parentElement;
 
-    <div class="card content-card p-4">
+  parent.querySelectorAll('.review-btn')
+    .forEach(b=>{
 
-      <table id="tabelPublikasi"
-             class="table table-hover align-middle">
+      b.classList.remove(
+        'active-success',
+        'active-danger',
+        'active-secondary'
+      );
 
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Publikasi</th>
-            <th>Status</th>
-            <th>Progress</th>
-          </tr>
-        </thead>
+    });
 
-        <tbody></tbody>
+  if(value === 'Sudah Benar'){
 
-      </table>
+    btn.classList.add('active-success');
 
-    </div>
+  }
 
-  </div>
+  else if(value === 'Ada Kesalahan'){
 
-  <!-- UPLOAD PAGE -->
-  <div class="page" id="uploadPage">
+    btn.classList.add('active-danger');
 
-    <div class="topbar">
-      <h4 class="fw-bold mb-1">
-        Upload Draft Publikasi
-      </h4>
-    </div>
+  }
 
-    <div id="uploadContainer"></div>
+  else{
 
-  </div>
+    btn.classList.add('active-secondary');
 
-  <!-- REVIEW PAGE -->
-  <div class="page" id="reviewPage">
+  }
 
-    <div class="topbar">
-      <h4 class="fw-bold mb-1">
-        Review Publikasi
-      </h4>
-    </div>
+  parent.parentElement
+    .querySelector('.review-answer')
+    .value = value;
 
-    <div id="reviewContainer"></div>
+}
 
-  </div>
+/* =========================
+CALENDAR
+========================= */
 
-</div>
+async function loadCalendar(){
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+  const response =
+    await fetch(`${API_URL}?action=getPublikasi`);
 
-<script src="script.js"></script>
+  const result =
+    await response.json();
+
+  const events = [];
+
+  result.data.forEach(item=>{
+
+    if(item.deadlineReview){
+
+      events.push({
+
+        title:
+          'Deadline - ' + item.namaPublikasi,
+
+        start:
+          convertDate(item.deadlineReview)
+
+      });
+
+    }
+
+  });
+
+  const calendar =
+    new FullCalendar.Calendar(
+
+      document.getElementById('calendar'),
+
+      {
+
+        initialView:'dayGridMonth',
+
+        events:events
+
+      }
+
+    );
+
+  calendar.render();
+
+}
+
+/* =========================
+DATE FORMAT
+========================= */
+
+function convertDate(dateStr){
+
+  const parts =
+    dateStr.split('/');
+
+  return `${parts[2]}-${parts[1]}-${parts[0]}`;
+
+}
+
+/* =========================
+CHART
+========================= */
+
+new Chart(document.getElementById('chartStatus'),{
+
+  type:'doughnut',
+
+  data:{
+
+    labels:[
+      'Sudah Rilis',
+      'Dalam Review',
+      'Revisi'
+    ],
+
+    datasets:[{
+
+      data:[12,7,3]
+
+    }]
+
+  }
+
+});
+
+new Chart(document.getElementById('chartTim'),{
+
+  type:'bar',
+
+  data:{
+
+    labels:[
+      'IPDS',
+      'Sosial',
+      'Produksi',
+      'NWAS',
+      'Distribusi'
+    ],
+
+    datasets:[{
+
+      label:'Publikasi',
+
+      data:[5,7,4,3,6]
+
+    }]
+
+  }
+
+});
+
+</script>
 
 </body>
 </html>
